@@ -22,8 +22,8 @@ int main(int argc, char** argv) {
     fstream primer_file;
     primer_file.open("./primers",ios::out);
     for (int i = 0; i < g_primer_num; ++i) {
-        string acc = "primer";
-        acc += i;
+        string acc = ">primer";
+        acc += to_string(i);
         primer_file<<acc<<endl;
         string data;
         for (int j = 0; j < g_primer_length; ++j) {
@@ -34,10 +34,10 @@ int main(int argc, char** argv) {
     primer_file.close();
 
     fstream payload_file;
-    primer_file.open("./payload",ios::out);
+    payload_file.open("./payload",ios::out);
     for (int j = 0; j < g_payload_num; ++j) {
-        string acc = "payload";
-        acc += j;
+        string acc = ">payload";
+        acc += to_string(j);
         payload_file<<acc<<endl;
         string data;
         for (int i = 0; i < g_payload_length; ++i) {
