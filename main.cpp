@@ -17,7 +17,6 @@ int main(int argc, char** argv) {
         return -1;
     }
 
-    srand((unsigned)time(NULL));
 
 
     Generate_primer generatePrimer;
