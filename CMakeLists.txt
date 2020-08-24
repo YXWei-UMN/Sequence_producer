@@ -3,4 +3,4 @@ project(Sequence_producer)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Sequence_producer main.cpp global.cpp global.h)
+add_executable(Sequence_producer main.cpp global.cpp global.h primer.cpp primer.h)

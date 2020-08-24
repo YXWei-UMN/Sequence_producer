@@ -8,7 +8,13 @@ int g_primer_length;
 int g_payload_length;
 int g_primer_num;
 int g_payload_num;
-
+double g_GC_content_lower_bound;
+double g_GC_content_upper_bound;
+int g_length_of_selfcomplementary;
+int g_length_of_homopolymers;
+int g_minimum_hamming_distance;
+int g_temperature_lower_bound;
+int g_temperature_upper_bound;
 int Parse(string cfgfile){
     ifstream filestream(cfgfile, ios_base::in);
     if (filestream.fail()) {
@@ -38,6 +44,27 @@ int Parse(string cfgfile){
                 break;
             case hash_("payload_num"):
                 g_payload_num = stoi(value);
+                break;
+            case hash_("GC_content_lower_bound"):
+                g_GC_content_lower_bound = stod(value);
+                break;
+            case hash_("GC_content_upper_bound"):
+                g_GC_content_upper_bound = stod(value);
+                break;
+            case hash_("length_of_homopolymers"):
+                g_length_of_homopolymers = stoi(value);
+                break;
+            case hash_("length_of_selfcomplementary"):
+                g_length_of_selfcomplementary = stoi(value);
+                break;
+            case hash_("minimum_hamming_distance"):
+                g_minimum_hamming_distance = stoi(value);
+                break;
+            case hash_("temperature_lower_bound"):
+                g_temperature_lower_bound = stoi(value);
+                break;
+            case hash_("temperature_upper_bound"):
+                g_temperature_upper_bound = stoi(value);
                 break;
             default:
                 cout<<"unknown cfg: "<<key<<endl;

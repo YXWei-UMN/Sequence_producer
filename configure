@@ -1,4 +1,12 @@
 primer_length 20
-payload_length 300
-primer_num 140
-payload_num 2000
+#payload_length 300
+primer_num 28
+#payload_num 2000
+GC_content_lower_bound 0.4
+GC_content_upper_bound 0.6
+length_of_selfcomplementary 4
+length_of_homopolymers 5
+minimum_hamming_distance 6
+temperature_lower_bound 55
+temperature_upper_bound 60
+

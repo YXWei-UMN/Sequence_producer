@@ -1,9 +1,9 @@
 #include <iostream>
 #include "global.h"
-#include "stdlib.h"
+#include <stdlib.h>
+#include "primer.h"
 using namespace std;
 
-static const string nuleotides[] = { "A", "T", "G", "C" };
 int main(int argc, char** argv) {
     if (argc != 2) {
         cerr<<"argc must be 2"<<endl;
@@ -19,25 +19,19 @@ int main(int argc, char** argv) {
 
     srand((unsigned)time(NULL));
 
-    fstream primer_file;
-    primer_file.open("./primers",ios::out);
-    for (int i = 0; i < g_primer_num; ++i) {
-        string acc = "primer";
-        acc += i;
-        primer_file<<acc<<endl;
-        string data;
-        for (int j = 0; j < g_primer_length; ++j) {
-            data+=nuleotides[rand()%4];
-        }
-        primer_file<<data<<endl;
-    }
-    primer_file.close();
 
+    Generate_primer generatePrimer;
+    generatePrimer.Generate_all_qulified_primers();
+
+
+
+
+/*
     fstream payload_file;
-    primer_file.open("./payload",ios::out);
+    payload_file.open("./payload",ios::out);
     for (int j = 0; j < g_payload_num; ++j) {
         string acc = "payload";
-        acc += j;
+        acc += to_string(j);
         payload_file<<acc<<endl;
         string data;
         for (int i = 0; i < g_payload_length; ++i) {
@@ -45,7 +39,7 @@ int main(int argc, char** argv) {
         }
         payload_file<<data<<endl;
     }
-    payload_file.close();
+    payload_file.close();*/
 
 
     return 0;
