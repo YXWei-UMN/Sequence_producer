@@ -11,6 +11,7 @@ int g_payload_num;
 double g_GC_content_lower_bound;
 double g_GC_content_upper_bound;
 int g_length_of_selfcomplementary;
+int g_length_of_crosscomplementary;
 int g_length_of_homopolymers;
 int g_minimum_hamming_distance;
 int g_temperature_lower_bound;
@@ -56,6 +57,9 @@ int Parse(string cfgfile){
                 break;
             case hash_("length_of_selfcomplementary"):
                 g_length_of_selfcomplementary = stoi(value);
+                break;
+            case hash_("length_of_crosscomplementary"):
+                g_length_of_crosscomplementary = stoi(value);
                 break;
             case hash_("minimum_hamming_distance"):
                 g_minimum_hamming_distance = stoi(value);

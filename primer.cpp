@@ -27,6 +27,9 @@ bool Generate_primer::Verification() {
     if(!SelfComplementary()){
         return false;
     }
+    if(!CrossComplementary()){
+        return false;
+    }
     return HammingDistance();
 
 }
@@ -94,8 +97,39 @@ bool Generate_primer::SelfComplementary() {
                 }
             }
         }
-        return !(all_substrs.find(complementary_str) != all_substrs.end());
+        if(all_substrs.find(complementary_str) != all_substrs.end()) return false;
     }
+    return true;
+}
+
+bool Generate_primer::CrossComplementary() {
+    for (int i = 0; i < g_primer_length-(g_length_of_selfcomplementary-1); ++i) {
+        string str = primer_ID.substr(i,g_length_of_crosscomplementary);
+        //str's complementary
+        string complementary_str;
+        for(auto n:str){
+            switch (n){
+                case 'A':{
+                    complementary_str+='T';
+                    break;
+                }
+                case 'T':{
+                    complementary_str+='A';
+                    break;
+                }
+                case 'C':{
+                    complementary_str+='G';
+                    break;
+                }
+                case 'G':{
+                    complementary_str+='C';
+                    break;
+                }
+            }
+        }
+        if(substrs_of_all_primers_.find(complementary_str) != substrs_of_all_primers_.end()) return false;
+    }
+    return true;
 }
 
 bool Generate_primer::Temperature() {
@@ -116,7 +150,11 @@ void Generate_primer::Generate_all_qulified_primers() {
             ReGenerateNewID();
         }
         qualified_primers_.emplace_back(primer_ID);
-        string acc = "primer";
+        for (int i = 0; i < g_primer_length-(g_length_of_crosscomplementary-1); ++i) {
+            string str = primer_ID.substr(i, g_length_of_crosscomplementary);
+            substrs_of_all_primers_.emplace(str);
+        }
+        string acc = ">primer";
         acc += to_string(i);
         primer_file<<acc<<endl;
         primer_file<<primer_ID<<endl;

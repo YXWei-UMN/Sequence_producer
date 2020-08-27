@@ -33,6 +33,7 @@ extern int g_payload_num;
 extern double g_GC_content_lower_bound;
 extern double g_GC_content_upper_bound;
 extern int g_length_of_selfcomplementary;
+extern int g_length_of_crosscomplementary;
 extern int g_length_of_homopolymers;
 extern int g_minimum_hamming_distance;
 extern int g_temperature_lower_bound;
