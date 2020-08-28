@@ -60,11 +60,15 @@ bool Generate_primer::Homopolymers() {
     int cur_length_of_homo=0;
 
     for (int i = 1; i < g_primer_length; ++i) {
-        if(primer_ID[i] == last_one) cur_length_of_homo++;
-        else {
-            if(cur_length_of_homo>max_length_of_homo) max_length_of_homo = cur_length_of_homo;
-            cur_length_of_homo = 0;
+        if(primer_ID[i] == last_one){
+            cur_length_of_homo++;
+            if(cur_length_of_homo>max_length_of_homo)
+            {
+                max_length_of_homo = cur_length_of_homo;
+            }
         }
+        else  cur_length_of_homo = 0;
+        
         last_one = primer_ID[i];
     }
     return max_length_of_homo < g_length_of_homopolymers;
